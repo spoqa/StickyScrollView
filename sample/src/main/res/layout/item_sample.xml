@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorGrey">
+
+        <TextView
+            android:id="@+id/sample1_nameTextView"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            tools:text="fixed column" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/sample1_standardTextView"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="@color/colorGreyLight1"
+        tools:text="column 1" />
+
+    <TextView
+        android:id="@+id/sample1_countTextView"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="@color/colorGreyLight2"
+        tools:text="column 2" />
+
+    <TextView
+        android:id="@+id/sample1_unitTextView"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="@color/colorGreyLight1"
+        tools:text="column 3" />
+
+    <TextView
+        android:id="@+id/sample1_amountTextView"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="@color/colorGreyLight2"
+        tools:text="column 4" />
+
+    <TextView
+        android:id="@+id/sample1_totalAmountTextView"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="@color/colorGreyLight1"
+        tools:text="column 5" />
+
+</LinearLayout>
