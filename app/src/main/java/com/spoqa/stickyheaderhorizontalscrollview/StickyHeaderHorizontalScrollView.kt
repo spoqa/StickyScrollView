@@ -31,11 +31,13 @@ open class StickyHeaderHorizontalScrollView : HorizontalScrollView, ViewTreeObse
     private var initWidthOfStickyColumn = 0
 
     // Minimum width value of sticky column
-    var minWidthOfStickyColumn = 0
+    var minWidthOfStickyColumn: Int? = null
 
     private var stickyColumnFixedX = 0
         get() {
-            field = initWidthOfStickyColumn - minWidthOfStickyColumn
+            minWidthOfStickyColumn?.let {
+                field = initWidthOfStickyColumn - it
+            }
             return if (field < 0) 0 else field
         }
 
