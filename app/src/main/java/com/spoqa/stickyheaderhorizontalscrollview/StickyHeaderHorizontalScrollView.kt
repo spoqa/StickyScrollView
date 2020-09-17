@@ -16,23 +16,28 @@ open class StickyHeaderHorizontalScrollView : HorizontalScrollView, ViewTreeObse
         defStyleAttr
     )
 
-    // When scrolling fast, it looks like a bounce effect,
-    // so set up padding directly in the child view.
-
+    /**
+     * If you adjust the padding of the parent view(Layout),
+     * it looks like a bounce effect when scrolling fast.
+     * So adjust the padding directly in the child view(TextView).
+     * To do this, set the variables for the parent view(layout) and the child view(TextView) separately.
+     */
     // List of sticky column - parent view
     private var stickyParentViews = ArrayList<View>()
     // List of sticky column - child view
     private var stickyChildViews = ArrayList<View>()
 
-    // If the width of the sticky view is adjusted according to scrolling,
-    // set the stickyViewWidth and stickyViewMinWidth.
-
     // Initial width value of sticky column
     private var initWidthOfStickyColumn = 0
 
+    /**
+     * If the width of the sticky column is adjusted according to scrolling,
+     * set the minWidthOfStickyColumn.
+     */
     // Minimum width value of sticky column
     var minWidthOfStickyColumn: Int? = null
 
+    // The x position that starts to fixed during scrolling
     private var stickyColumnFixedX = 0
         get() {
             minWidthOfStickyColumn?.let {
@@ -41,6 +46,19 @@ open class StickyHeaderHorizontalScrollView : HorizontalScrollView, ViewTreeObse
             return if (field < 0) 0 else field
         }
 
+    /**
+     * If the scroll X value is less than stickyViewFixedX,
+     * adjust the left padding of the child views to the scrolled x value,
+     * adjust the translationX of parent views to zero.
+     *
+     * If the scroll X value is same as stickyViewFixedX or higher,
+     * adjust the left padding of the child views to stickyViewFixedX,
+     * adjust the translationX of the parent views to value of the scrolled x value minus stickyViewFixedX.
+     *
+     * If you do this, without actually adjusting the width of the sticky column,
+     * the sticky column will be fixed to the left, and as you scroll,
+     * the sticky column's width will appear to be adjusted.
+     */
     override fun onScrollChanged(l: Int, t: Int, oldl: Int, oldt: Int) {
         super.onScrollChanged(l, t, oldl, oldt)
         if (l < stickyColumnFixedX) {
