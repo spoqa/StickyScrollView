@@ -20,38 +20,37 @@ open class StickyHeaderHorizontalScrollView : HorizontalScrollView, ViewTreeObse
     // so set up padding directly in the child view.
 
     // List of sticky column - parent view
-    protected var stickyParentViews = ArrayList<View>()
-
+    private var stickyParentViews = ArrayList<View>()
     // List of sticky column - child view
-    protected var stickyChildViews = ArrayList<View>()
+    private var stickyChildViews = ArrayList<View>()
 
     // If the width of the sticky view is adjusted according to scrolling,
     // set the stickyViewWidth and stickyViewMinWidth.
 
     // Initial width value of sticky column
-    protected var stickyViewWidth = 0
+    private var initWidthOfStickyColumn = 0
 
     // Minimum width value of sticky column
-    var stickyViewMinWidth = 0
+    var minWidthOfStickyColumn = 0
 
-    private var stickyViewFixedX = 0
+    private var stickyColumnFixedX = 0
         get() {
-            field = stickyViewWidth - stickyViewMinWidth
+            field = initWidthOfStickyColumn - minWidthOfStickyColumn
             return if (field < 0) 0 else field
         }
 
     override fun onScrollChanged(l: Int, t: Int, oldl: Int, oldt: Int) {
         super.onScrollChanged(l, t, oldl, oldt)
-        if (l < stickyViewFixedX) {
+        if (l < stickyColumnFixedX) {
             stickyChildViews.map { textView ->
                 textView.setPadding(l, textView.paddingTop, textView.paddingRight, textView.paddingBottom)
             }
             stickyParentViews.map { view -> view.translationX = 0f }
         } else {
             stickyChildViews.map { textView ->
-                textView.setPadding(stickyViewFixedX, textView.paddingTop, textView.paddingRight, textView.paddingBottom)
+                textView.setPadding(stickyColumnFixedX, textView.paddingTop, textView.paddingRight, textView.paddingBottom)
             }
-            stickyParentViews.map { view -> view.translationX = (l - stickyViewFixedX).toFloat() }
+            stickyParentViews.map { view -> view.translationX = (l - stickyColumnFixedX).toFloat() }
         }
     }
 
