@@ -51,7 +51,7 @@ open class StickyColumnHorizontalScrollView : HorizontalScrollView, ViewTreeObse
      * If the width of the sticky column is adjusted according to scrolling,
      * set the minWidthOfStickyColumn.
      */
-    // Minimum width value of sticky column
+    // Minimum width value of sticky column (pixel)
     var minWidthOfStickyColumn: Int? = null
 
     // The x position that starts to fixed during scrolling
