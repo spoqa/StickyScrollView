@@ -1,4 +1,4 @@
-package com.spoqa.stickyheaderhorizontalscrollview
+package com.spoqa.stickyscrollview
 
 import android.content.Context
 import android.util.AttributeSet
@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
 
-open class StickyHeaderHorizontalScrollView : HorizontalScrollView, ViewTreeObserver.OnGlobalLayoutListener {
+open class StickyColumnHorizontalScrollView : HorizontalScrollView, ViewTreeObserver.OnGlobalLayoutListener {
 
     constructor(context: Context) : this(context, null, 0)
     constructor(context: Context, attr: AttributeSet?) : this(context, attr, 0)
