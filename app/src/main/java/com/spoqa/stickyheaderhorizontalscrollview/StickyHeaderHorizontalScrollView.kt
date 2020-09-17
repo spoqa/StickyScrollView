@@ -3,8 +3,11 @@ package com.spoqa.stickyheaderhorizontalscrollview
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
+import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.HorizontalScrollView
+import android.widget.TextView
+import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
 
 open class StickyHeaderHorizontalScrollView : HorizontalScrollView, ViewTreeObserver.OnGlobalLayoutListener {
@@ -101,7 +104,37 @@ open class StickyHeaderHorizontalScrollView : HorizontalScrollView, ViewTreeObse
         viewTreeObserver.removeOnGlobalLayoutListener(this)
     }
 
-    override fun onGlobalLayout() {}
+    /**
+     * Assign variables in onGlobalLayout to get the views you need right,
+     * and prevent them from duplicate assignment.
+     */
+    override fun onGlobalLayout() {
+        stickyHeaderColumn?.let { headerView ->
+            if (headerView.width != 0 && initWidthOfStickyColumn == 0) {
+                initWidthOfStickyColumn = headerView.width
+                stickyParentViews.add(headerView)
+                (headerView as ViewGroup).children.forEach { childView ->
+                    if (childView is TextView) {
+                        stickyChildViews.add(childView)
+                    }
+                }
+            }
+        }
+        val tableRowsSize = stickyParentViews.size - if (stickyHeaderColumn != null) 1 else 0
+        if (tableRowsSize >= recyclerView?.childCount ?: 0) return
+        recyclerView?.let { listView ->
+            for (i in 0 until listView.childCount) {
+                val columnView = (listView.getChildAt(i) as ViewGroup).getChildAt(0)
+                columnView.translationZ = 1f
+                stickyParentViews.add(columnView)
+                (columnView as ViewGroup).children.forEach { childView ->
+                    if (childView is TextView) {
+                        stickyChildViews.add(childView)
+                    }
+                }
+            }
+        }
+    }
 
     override fun getLeftFadingEdgeStrength(): Float {
         return 0.0f
