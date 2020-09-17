@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.HorizontalScrollView
+import androidx.recyclerview.widget.RecyclerView
 
 open class StickyHeaderHorizontalScrollView : HorizontalScrollView, ViewTreeObserver.OnGlobalLayoutListener {
 
@@ -45,6 +46,22 @@ open class StickyHeaderHorizontalScrollView : HorizontalScrollView, ViewTreeObse
             }
             return if (field < 0) 0 else field
         }
+
+    /**
+     * Set the stickyHeaderColumn variable so that it can be covered even
+     * when the header is a layout that is not included in the recycleView.
+     *
+     * If the header is in the RecyclerView, you do not need to assign it.
+     */
+    // header view to make sticky
+    var stickyHeaderColumn: View? = null
+        set(value) {
+            field = value
+            field?.translationZ = 1f
+        }
+
+    // RecyclerView with a column to make sticky
+    var recyclerView: RecyclerView? = null
 
     /**
      * If the scroll X value is less than stickyViewFixedX,
