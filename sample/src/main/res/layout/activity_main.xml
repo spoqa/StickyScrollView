@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,6 +11,181 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="@string/sample1_title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:text="@string/sample1_description" />
+
+        <com.spoqa.stickyscrollview.StickyColumnHorizontalScrollView
+            android:id="@+id/main_scrollView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:overScrollMode="never"
+            android:fadeScrollbars="false"
+            android:scrollbarThumbHorizontal="@color/colorGreyDark"
+            android:scrollbarTrackHorizontal="@color/colorGrey"
+            android:scrollbarSize="2dp"
+            android:scrollbars="horizontal">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/main_recyclerView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_sample"
+                tools:itemCount="5" />
+
+        </com.spoqa.stickyscrollview.StickyColumnHorizontalScrollView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="@string/sample2_title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:text="@string/sample2_description" />
+
+        <com.spoqa.stickyscrollview.StickyColumnHorizontalScrollView
+            android:id="@+id/main_scrollView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:overScrollMode="never"
+            android:fadeScrollbars="false"
+            android:scrollbarThumbHorizontal="@color/colorGreyDark"
+            android:scrollbarTrackHorizontal="@color/colorGrey"
+            android:scrollbarSize="2dp"
+            android:scrollbars="horizontal">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/main_recyclerView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_sample"
+                tools:itemCount="5" />
+
+        </com.spoqa.stickyscrollview.StickyColumnHorizontalScrollView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="@string/sample3_title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:text="@string/sample3_description" />
+
+        <com.spoqa.stickyscrollview.StickyColumnHorizontalScrollView
+            android:id="@+id/main_scrollView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:overScrollMode="never"
+            android:fadeScrollbars="false"
+            android:scrollbarThumbHorizontal="@color/colorGreyDark"
+            android:scrollbarTrackHorizontal="@color/colorGrey"
+            android:scrollbarSize="2dp"
+            android:scrollbars="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/main_HeaderLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:background="@color/colorGreyDark"
+                            android:text="@string/name_header" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:background="@color/colorGreyDark"
+                        android:text="@string/standard_header" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:background="@color/colorGreyDark"
+                        android:text="@string/count_header" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:background="@color/colorGreyDark"
+                        android:text="@string/unit_header" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:background="@color/colorGreyDark"
+                        android:text="@string/amount_header" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:background="@color/colorGreyDark"
+                        android:text="@string/total_amount_header" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/main_recyclerView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_sample"
+                    tools:itemCount="5" />
+
+            </LinearLayout>
+
+        </com.spoqa.stickyscrollview.StickyColumnHorizontalScrollView>
 
     </LinearLayout>
 

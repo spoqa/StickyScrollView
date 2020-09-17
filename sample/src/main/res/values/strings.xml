@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">StickyScrollViewSample</string>
+    <string name="sample1_title">Sample 1</string>
+    <string name="sample1_description">The width of the sticky column is not adjusted as you scroll.</string>
+    <string name="sample2_title">Sample 2</string>
+    <string name="sample2_description">The width of the sticky column is adjusted as you scroll.</string>
+    <string name="sample3_title">Sample 3</string>
+    <string name="sample3_description">It also works when the header is outside the recyclerView.</string>
+    <string name="name_header">Name</string>
+    <string name="standard_header">Standard</string>
+    <string name="count_header">Count</string>
+    <string name="unit_header">Unit</string>
+    <string name="amount_header">Amount</string>
+    <string name="total_amount_header">TotalAmount</string>
 </resources>
