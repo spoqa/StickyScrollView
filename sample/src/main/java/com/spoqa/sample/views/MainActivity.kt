@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         main_recyclerView3.adapter =
             SampleRecyclerViewAdapter(sampleDataList)
         main_scrollView3.run {
-            stickyHeaderColumn = main_HeaderLayout
+            stickyHeaderColumn = main_stickyHeaderColumnLayout
             recyclerView = main_recyclerView3
             minWidthOfStickyColumn = (100 * context.resources.displayMetrics.density).toInt()
         }
