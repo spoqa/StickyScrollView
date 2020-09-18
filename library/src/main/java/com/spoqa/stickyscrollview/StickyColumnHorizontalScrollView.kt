@@ -31,18 +31,18 @@ open class StickyColumnHorizontalScrollView : HorizontalScrollView, ViewTreeObse
     // List of sticky column - child view
     private var stickyChildViews = ArrayList<View>()
 
-    // Initial width value of sticky column
-    private var initWidthOfStickyColumn = 0
+    // Original width value of sticky column
+    private var originalWidthOfStickyColumn = 0
         set(value) {
-            if (initWidthOfStickyColumn == 0) {
+            if (originalWidthOfStickyColumn == 0) {
                 field = value
             }
         }
 
-    // Initial paddingLeft value of sticky column
-    private var initPaddingLeftOfStickyColumn = 0
+    // Original paddingLeft value of sticky column
+    private var originalPaddingLeftOfStickyColumn = 0
         set(value) {
-            if (initPaddingLeftOfStickyColumn == 0) {
+            if (originalPaddingLeftOfStickyColumn == 0) {
                 field = value
             }
         }
@@ -58,7 +58,7 @@ open class StickyColumnHorizontalScrollView : HorizontalScrollView, ViewTreeObse
     private var stickyColumnFixedX = 0
         get() {
             minWidthOfStickyColumn?.let {
-                field = initWidthOfStickyColumn - it
+                field = originalWidthOfStickyColumn - it
             }
             return if (field < 0) 0 else field
         }
@@ -104,13 +104,13 @@ open class StickyColumnHorizontalScrollView : HorizontalScrollView, ViewTreeObse
             }
             l < stickyColumnFixedX -> {
                 stickyChildViews.map { textView ->
-                    textView.setPadding(l + initPaddingLeftOfStickyColumn, textView.paddingTop, textView.paddingRight, textView.paddingBottom)
+                    textView.setPadding(l + originalPaddingLeftOfStickyColumn, textView.paddingTop, textView.paddingRight, textView.paddingBottom)
                 }
                 stickyParentViews.map { view -> view.translationX = 0f }
             }
             else -> {
                 stickyChildViews.map { textView ->
-                    textView.setPadding(stickyColumnFixedX + initPaddingLeftOfStickyColumn, textView.paddingTop, textView.paddingRight, textView.paddingBottom)
+                    textView.setPadding(stickyColumnFixedX + originalPaddingLeftOfStickyColumn, textView.paddingTop, textView.paddingRight, textView.paddingBottom)
                 }
                 stickyParentViews.map { view -> view.translationX = (l - stickyColumnFixedX).toFloat() }
             }
@@ -133,12 +133,12 @@ open class StickyColumnHorizontalScrollView : HorizontalScrollView, ViewTreeObse
      */
     override fun onGlobalLayout() {
         stickyHeaderColumn?.let { headerView ->
-            if (headerView.width != 0 && initWidthOfStickyColumn == 0) {
-                initWidthOfStickyColumn = headerView.width
+            if (headerView.width != 0 && originalWidthOfStickyColumn == 0) {
+                originalWidthOfStickyColumn = headerView.width
                 stickyParentViews.add(headerView)
                 (headerView as ViewGroup).children.forEach { childView ->
                     if (childView is TextView) {
-                        initPaddingLeftOfStickyColumn = headerView.paddingLeft
+                        originalPaddingLeftOfStickyColumn = headerView.paddingLeft
                         stickyChildViews.add(childView)
                     }
                 }
@@ -149,12 +149,12 @@ open class StickyColumnHorizontalScrollView : HorizontalScrollView, ViewTreeObse
         recyclerView?.let { listView ->
             for (i in 0 until listView.childCount) {
                 val columnView = (listView.getChildAt(i) as ViewGroup).getChildAt(0)
-                initWidthOfStickyColumn = columnView.width
+                originalWidthOfStickyColumn = columnView.width
                 columnView.translationZ = 1f
                 stickyParentViews.add(columnView)
                 (columnView as ViewGroup).children.forEach { childView ->
                     if (childView is TextView) {
-                        initPaddingLeftOfStickyColumn = childView.paddingLeft
+                        originalPaddingLeftOfStickyColumn = childView.paddingLeft
                         stickyChildViews.add(childView)
                     }
                 }
