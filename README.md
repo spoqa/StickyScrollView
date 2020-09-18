@@ -25,7 +25,7 @@ Add the following gradle dependency.
 
 ```groovy
 dependencies {
-	implementation 'com.spoqa.stickyscrollview:StickyScrollView:1.0.1'
+    implementation 'com.spoqa.stickyscrollview:StickyScrollView:1.0.1'
 }
 ```
 
@@ -39,8 +39,8 @@ The sticky column must be a below format to work as intended. 😢
 
 ```xml
 <Layout>
-	<TextView />
-	<!-- If the paddingLeft is the same, you can add more TextView -->
+    <TextView />
+    <!-- If the paddingLeft is the same, you can add more TextView -->
 </Layout>
 ```
 
@@ -50,26 +50,26 @@ The width of the sticky column is not adjusted as you scroll.
 
 ```xml
 <com.spoqa.stickyscrollview.StickyColumnHorizontalScrollView
-	android:id="@+id/main_scrollView"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:scrollbars="horizontal">
+    android:id="@+id/main_scrollView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:scrollbars="horizontal">
 
-	<androidx.recyclerview.widget.RecyclerView
-		android:id="@+id/main_recyclerView"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/main_recyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 </com.spoqa.stickyscrollview.StickyColumnHorizontalScrollView>
 ```
 
 ```kotlin
 override fun onCreate(savedInstanceState: Bundle?) {
-	...
-	main_scrollView.run {
-		recyclerView = main_recyclerView
-	}
+    ...
+    main_scrollView.run {
+        recyclerView = main_recyclerView
+    }
 }
 ```
 
@@ -79,11 +79,11 @@ The width of the sticky column is adjusted as you scroll.
 
 ```kotlin
 override fun onCreate(savedInstanceState: Bundle?) {
-	...
-	main_scrollView.run {
-		recyclerView = main_recyclerView
-		minWidthOfStickyColumn = (100 * context.resources.displayMetrics.density).toInt()
-	}
+    ...
+    main_scrollView.run {
+        recyclerView = main_recyclerView
+        minWidthOfStickyColumn = (100 * context.resources.displayMetrics.density).toInt()
+    }
 }
 ```
 
@@ -93,60 +93,60 @@ The header is outside the Recycleview.
 
 ```xml
 <com.spoqa.stickyscrollview.StickyColumnHorizontalScrollView
-	android:id="@+id/main_scrollView"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:scrollbars="horizontal">
+    android:id="@+id/main_scrollView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:scrollbars="horizontal">
 
-	<LinearLayout
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-		<LinearLayout
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-			<LinearLayout
-				android:id="@+id/main_stickyHeaderColumnLayout"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:orientation="horizontal">
+            <LinearLayout
+                android:id="@+id/main_stickyHeaderColumnLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-				<TextView
-					android:layout_width="150dp"
-					android:layout_height="wrap_content"
-					android:text="sticky header" />
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="sticky header" />
 
-			</LinearLayout>
+            </LinearLayout>
 
-			<TextView
-				android:layout_width="100dp"
-				android:layout_height="wrap_content"
-				android:text="header 1" />
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="header 1" />
 
-		</LinearLayout>
+        </LinearLayout>
 
-	</LinearLayout>
+    </LinearLayout>
 
-	<androidx.recyclerview.widget.RecyclerView
-		android:id="@+id/main_recyclerView"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/main_recyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 </com.spoqa.stickyscrollview.StickyColumnHorizontalScrollView>
 ```
 
 ```kotlin
 override fun onCreate(savedInstanceState: Bundle?) {
-	...
-	main_scrollView.run {
-		stickyHeaderColumn = main_stickyHeaderColumnLayout
-		recyclerView = main_recyclerView
-		minWidthOfStickyColumn = (100 * context.resources.displayMetrics.density).toInt()
-	}
+    ...
+    main_scrollView.run {
+        stickyHeaderColumn = main_stickyHeaderColumnLayout
+        recyclerView = main_recyclerView
+        minWidthOfStickyColumn = (100 * context.resources.displayMetrics.density).toInt()
+    }
 }
 ```
 
