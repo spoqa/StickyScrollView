@@ -12,7 +12,7 @@ The sticky column is fixed to the left and you can make the width of the sticky 
 
 ### Screenshots
 
-TODO
+<img src ="https://user-images.githubusercontent.com/22957868/93572533-f066bc80-f9d0-11ea-84eb-a58429112948.gif" width="200" /> <img src ="https://user-images.githubusercontent.com/22957868/93572553-f8266100-f9d0-11ea-95b7-621cac1a026c.gif" width="200" /> <img src ="https://user-images.githubusercontent.com/22957868/93572557-f9578e00-f9d0-11ea-88fc-1cf4ab9d9cd0.gif" width="200" />
 
 ### How to use
 
