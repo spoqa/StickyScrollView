@@ -1,5 +1,8 @@
 # StickyScrollView
 
+[![Platform][PlatformBadge]][ProjectGithubUrl]
+[![Download][DownloadBadge]][DownloadUrl]
+
 StickyScrollView is a scroll view in which columns or rows(TBD) are fixed.
 
 We are planning to add more kinds of scroll views.
@@ -169,3 +172,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+[PlatformBadge]:  https://img.shields.io/badge/Platform-Android-blue.svg
+[ProjectGithubUrl]: https://github.com/spoqa/StickyScrollView
+[DownloadBadge]: https://api.bintray.com/packages/spoqa/maven/StickyScrollView/images/download.svg?version=1.0.1
+[DownloadUrl]: https://bintray.com/spoqa/maven/StickyScrollView/1.0.1/link
