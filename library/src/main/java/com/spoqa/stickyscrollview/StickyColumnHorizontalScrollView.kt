@@ -31,21 +31,34 @@ open class StickyColumnHorizontalScrollView : HorizontalScrollView, ViewTreeObse
     // List of sticky column - child view
     private var stickyChildViews = ArrayList<View>()
 
-    // Initial width value of sticky column
-    private var initWidthOfStickyColumn = 0
+    // Original width value of sticky column
+    private var originalWidthOfStickyColumn = 0
+        set(value) {
+            if (originalWidthOfStickyColumn == 0) {
+                field = value
+            }
+        }
+
+    // Original paddingLeft value of sticky column
+    private var originalPaddingLeftOfStickyColumn = 0
+        set(value) {
+            if (originalPaddingLeftOfStickyColumn == 0) {
+                field = value
+            }
+        }
 
     /**
      * If the width of the sticky column is adjusted according to scrolling,
      * set the minWidthOfStickyColumn.
      */
-    // Minimum width value of sticky column
+    // Minimum width value of sticky column (pixel)
     var minWidthOfStickyColumn: Int? = null
 
     // The x position that starts to fixed during scrolling
     private var stickyColumnFixedX = 0
         get() {
             minWidthOfStickyColumn?.let {
-                field = initWidthOfStickyColumn - it
+                field = originalWidthOfStickyColumn - it
             }
             return if (field < 0) 0 else field
         }
@@ -67,6 +80,9 @@ open class StickyColumnHorizontalScrollView : HorizontalScrollView, ViewTreeObse
     var recyclerView: RecyclerView? = null
 
     /**
+     * If stickyViewFixedX is zero (If you do not adjust sticky column's width when scrolling),
+     * adjust the translationX of the parent views to value of the scrolled x value minus stickyViewFixedX.
+     *
      * If the scroll X value is less than stickyViewFixedX,
      * adjust the left padding of the child views to the scrolled x value,
      * adjust the translationX of parent views to zero.
@@ -78,19 +94,26 @@ open class StickyColumnHorizontalScrollView : HorizontalScrollView, ViewTreeObse
      * If you do this, without actually adjusting the width of the sticky column,
      * the sticky column will be fixed to the left, and as you scroll,
      * the sticky column's width will appear to be adjusted.
+     * FYI: If you adjust the width of sticky column when scrolling, the scroll speed will vary.
      */
     override fun onScrollChanged(l: Int, t: Int, oldl: Int, oldt: Int) {
         super.onScrollChanged(l, t, oldl, oldt)
-        if (l < stickyColumnFixedX) {
-            stickyChildViews.map { textView ->
-                textView.setPadding(l, textView.paddingTop, textView.paddingRight, textView.paddingBottom)
+        when {
+            stickyColumnFixedX == 0 -> {
+                stickyParentViews.map { view -> view.translationX = (l - stickyColumnFixedX).toFloat() }
             }
-            stickyParentViews.map { view -> view.translationX = 0f }
-        } else {
-            stickyChildViews.map { textView ->
-                textView.setPadding(stickyColumnFixedX, textView.paddingTop, textView.paddingRight, textView.paddingBottom)
+            l < stickyColumnFixedX -> {
+                stickyChildViews.map { textView ->
+                    textView.setPadding(l + originalPaddingLeftOfStickyColumn, textView.paddingTop, textView.paddingRight, textView.paddingBottom)
+                }
+                stickyParentViews.map { view -> view.translationX = 0f }
             }
-            stickyParentViews.map { view -> view.translationX = (l - stickyColumnFixedX).toFloat() }
+            else -> {
+                stickyChildViews.map { textView ->
+                    textView.setPadding(stickyColumnFixedX + originalPaddingLeftOfStickyColumn, textView.paddingTop, textView.paddingRight, textView.paddingBottom)
+                }
+                stickyParentViews.map { view -> view.translationX = (l - stickyColumnFixedX).toFloat() }
+            }
         }
     }
 
@@ -110,11 +133,12 @@ open class StickyColumnHorizontalScrollView : HorizontalScrollView, ViewTreeObse
      */
     override fun onGlobalLayout() {
         stickyHeaderColumn?.let { headerView ->
-            if (headerView.width != 0 && initWidthOfStickyColumn == 0) {
-                initWidthOfStickyColumn = headerView.width
+            if (headerView.width != 0 && originalWidthOfStickyColumn == 0) {
+                originalWidthOfStickyColumn = headerView.width
                 stickyParentViews.add(headerView)
                 (headerView as ViewGroup).children.forEach { childView ->
                     if (childView is TextView) {
+                        originalPaddingLeftOfStickyColumn = headerView.paddingLeft
                         stickyChildViews.add(childView)
                     }
                 }
@@ -125,10 +149,12 @@ open class StickyColumnHorizontalScrollView : HorizontalScrollView, ViewTreeObse
         recyclerView?.let { listView ->
             for (i in 0 until listView.childCount) {
                 val columnView = (listView.getChildAt(i) as ViewGroup).getChildAt(0)
+                originalWidthOfStickyColumn = columnView.width
                 columnView.translationZ = 1f
                 stickyParentViews.add(columnView)
                 (columnView as ViewGroup).children.forEach { childView ->
                     if (childView is TextView) {
+                        originalPaddingLeftOfStickyColumn = childView.paddingLeft
                         stickyChildViews.add(childView)
                     }
                 }
