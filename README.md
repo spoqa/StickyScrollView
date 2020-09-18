@@ -16,11 +16,15 @@ The sticky column is fixed to the left and you can make the width of the sticky 
 
 ### How to use
 
-1. Add the following gradle dependency.
+For more details, please see the [bintray](https://bintray.com/beta/#/spoqa/maven/StickyScrollView?tab=overview).
 
-	```kotlin
-	TODO
-	```
+Add the following gradle dependency.
+
+```groovy
+dependencies {
+	implementation 'com.spoqa.stickyscrollview:StickyScrollView:1.0.1'
+}
+```
 
 ### Usage
 
