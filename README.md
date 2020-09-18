@@ -1,5 +1,8 @@
 # StickyScrollView
 
+[![Platform][PlatformBadge]][ProjectGithubUrl]
+[![Download][DownloadBadge]][DownloadUrl]
+
 StickyScrollView is a scroll view in which columns or rows(TBD) are fixed.
 
 We are planning to add more kinds of scroll views.
@@ -12,15 +15,19 @@ The sticky column is fixed to the left and you can make the width of the sticky 
 
 ### Screenshots
 
-TODO
+<img src ="https://user-images.githubusercontent.com/22957868/93572533-f066bc80-f9d0-11ea-84eb-a58429112948.gif" width="200" /> <img src ="https://user-images.githubusercontent.com/22957868/93572553-f8266100-f9d0-11ea-95b7-621cac1a026c.gif" width="200" /> <img src ="https://user-images.githubusercontent.com/22957868/93572557-f9578e00-f9d0-11ea-88fc-1cf4ab9d9cd0.gif" width="200" />
 
 ### How to use
 
-1. Add the following gradle dependency.
+For more details, please see the [bintray](https://bintray.com/beta/#/spoqa/maven/StickyScrollView?tab=overview).
 
-	```kotlin
-	TODO
-	```
+Add the following gradle dependency.
+
+```groovy
+dependencies {
+	implementation 'com.spoqa.stickyscrollview:StickyScrollView:1.0.1'
+}
+```
 
 ### Usage
 
@@ -165,3 +172,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+[PlatformBadge]:  https://img.shields.io/badge/Platform-Android-blue.svg
+[ProjectGithubUrl]: https://github.com/spoqa/StickyScrollView
+[DownloadBadge]: https://api.bintray.com/packages/spoqa/maven/StickyScrollView/images/download.svg?version=1.0.1
+[DownloadUrl]: https://bintray.com/spoqa/maven/StickyScrollView/1.0.1/link
